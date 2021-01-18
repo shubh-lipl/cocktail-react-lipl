@@ -6,7 +6,7 @@ const url = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i='
 const SingleCocktail = () => {
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(false)
-  const [cocktail, setCocktail] = useState([])
+  const [cocktail, setCocktail] = useState(null)
 
   const getCocktails = React.useCallback(async () => {
     try {
@@ -71,13 +71,11 @@ const SingleCocktail = () => {
             <p><span className="drink-data">info:</span> {info}</p>
             <p><span className="drink-data">instruction:</span> {instruction}</p>
             <p><span className="drink-data">glass:</span> {glass}</p>
-            {
-              ingredient && <p><span className="drink-data">ingredients:</span>
-                {ingredient.map((item, index) => {
-                  return (item ? <span key={index}>{item}</span> : null)
-                })}
-              </p>
-            }
+            <p><span className="drink-data">ingredients:</span>
+              {ingredient.map((item, index) => {
+                return (item ? <span key={index}>{item}</span> : null)
+              })}
+            </p>
           </div>
         </div>
       </section>
